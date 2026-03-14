@@ -1,25 +1,32 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
+    <meta charset="utf-8">
     <title>TEDxICEAS</title>
-    <meta name="description" content="TEDxICEAS - Ideas Worth Spreading" />
-    <meta name="author" content="TEDxICEAS" />
-
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="TEDxICEAS" />
-    <meta property="og:description" content="TEDxICEAS - Ideas Worth Spreading" />
-    <meta property="og:type" content="website" />
-
-    <meta name="twitter:card" content="summary_large_image" />
+    <script type="text/javascript">
+        // Single Page Apps for GitHub Pages
+        // MIT License
+        // https://github.com/rafgraph/spa-github-pages
+        // This script checks to see if a redirect is present in the query string,
+        // converts it back into a correct url and adds it to the
+        // browser's history using window.history.replaceState(...),
+        // which will cause the window to load the correct route.
+        (function(l) {
+            if (l.search[1] === '/' ) {
+                var decoded = l.search.slice(1).split('&').map(function(s) { 
+                    return s.replace(/~and~/g, '&') 
+                }).join('?');
+                window.history.replaceState(null, null,
+                    l.pathname.slice(0, -1) + decoded + l.hash
+                );
+            }
+        }(window.location))
+    </script>
+    <script>
+        // If the above didn't catch it, just redirect to index.html
+        window.location.replace("index.html");
+    </script>
 </head>
-
 <body>
-    <div id="root"></div>
-    <script type="module" src="./src/main.tsx"></script>
 </body>
-
 </html>
