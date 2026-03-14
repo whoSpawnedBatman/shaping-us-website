@@ -47,7 +47,7 @@ const HeroSection = () => {
         >
           <span>📍 Bengaluru, India</span>
           <span className="hidden sm:block">·</span>
-          <span>📅 Coming Soon 2026</span>
+          <span>📅 July 18, 2025</span>
         </motion.div>
 
         <motion.div
