@@ -2,6 +2,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import SpeakerCard from "./SpeakerCard";
+import speaker1 from "@/assets/images/image.jpg";
+import speaker2 from "@/assets/images/trump.png";
+import speaker3 from "@/assets/images/ronnie.webp";
 
 const speakers = [
   {
@@ -9,21 +12,21 @@ const speakers = [
     role: "Supreme Leader",
     talkTitle: "The Architecture of Power",
     bio: "Looking at things. Pointing at things. Sometimes pushing the big red button (metaphorically... we hope).",
-    imageUrl: "/image.jpg",
+    imageUrl: speaker1,
   },
   {
     name: "Donald Trump",
     role: "45th U.S. President",
     talkTitle: "The Art of the Deal",
     bio: "This talk is going to be tremendous. The best talk. Everyone says it. Bigly.",
-    imageUrl: "/trump.png",
+    imageUrl: speaker2,
   },
   {
     name: "Ronnie Coleman",
     role: "8x Mr. Olympia",
     talkTitle: "YEAH BUDDY!",
     bio: "Light weight baby! Nothin' but a peanut!",
-    imageUrl: "/ronnie.webp",
+    imageUrl: speaker3,
   },
 ];
 

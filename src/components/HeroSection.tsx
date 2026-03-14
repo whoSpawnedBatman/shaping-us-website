@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import FloatingShapes from "./FloatingShapes";
+import logo from "@/assets/logo.png";
 
 const HeroSection = () => {
   const { scrollY } = useScroll();
@@ -40,7 +41,7 @@ const HeroSection = () => {
           className="flex justify-center"
         >
           <img
-            src="/tedxiceas-logo.png"
+            src={logo}
             alt="TEDxICEAS"
             className="h-24 sm:h-32 lg:h-40 xl:h-48 w-auto object-contain drop-shadow-2xl"
           />

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const footerLinks = [
   { label: "Home", path: "/" },
@@ -18,7 +19,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <img
-              src="/tedxiceas-logo.png"
+              src={logo}
               alt="TEDxICEAS Logo"
               className="h-10 w-auto object-contain mb-4"
             />

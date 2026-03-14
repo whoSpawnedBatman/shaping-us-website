@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { User } from "lucide-react";
+import batman from "@/assets/images/batman.gif";
 
 const teamMembers = [
   { name: "Person 1", role: "Organizer & Licensee", imageUrl: "" },
@@ -8,7 +9,7 @@ const teamMembers = [
   { name: "Person 3", role: "Speaker Curation Lead", imageUrl: "" },
   { name: "Person 4", role: "Creative Director", imageUrl: "" },
   { name: "Person 5", role: "Marketing Lead", imageUrl: "" },
-  { name: "Batman", role: "Website Manager", imageUrl: "/batman.gif" },
+  { name: "Batman", role: "Website Manager", imageUrl: batman },
 ];
 
 const Team = () => {
