@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
+import VideoCardSection from "@/components/VideoCardSection";
 
 const About = () => {
   return (
@@ -23,52 +24,63 @@ const About = () => {
             className="space-y-8"
           >
             <div>
-              <h2 className="font-display font-semibold text-2xl mb-4">About TEDx</h2>
+              <h2 className="font-display font-semibold text-2xl mb-4">About TEDx, x = independently organized event</h2>
               <p className="text-muted-foreground leading-relaxed">
-                In the spirit of discovering and spreading ideas, TEDx is a program of local, self-organized events that bring people together to share a TED-like experience. At a TEDx event, TED Talks video and live speakers combine to spark deep discussion and connection. These local, self-organized events are branded TEDx, where x = independently organized TED event.
+                In the spirit of discovering and spreading ideas, TEDx is a program of local, self-organized events that bring people together to share a TED-like experience. At a TEDx event, TED Talks video and live speakers combine to spark deep discussion and connection. These local, self-organized events are branded TEDx, where x = independently organized TED event. The TED Conference provides general guidance for the TEDx program, but individual TEDx events are self-organized. (Subject to certain rules and regulations.)
               </p>
             </div>
 
+            <VideoCardSection />
+
             <div>
               <h2 className="font-display font-semibold text-2xl mb-4">About TED</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                TED is a nonprofit, nonpartisan organization dedicated to discovering, debating and spreading ideas that spark conversation, deepen understanding and drive meaningful change. Our organization is devoted to curiosity, reason, wonder and the pursuit of knowledge — without an agenda. We welcome people from every discipline and culture who seek a deeper understanding of the world and connection with others, and we invite everyone to engage with ideas and activate them in your community.
+              </p>
               <p className="text-muted-foreground leading-relaxed">
-                TED is a nonprofit organization devoted to Ideas Worth Spreading, often in the form of short talks delivered by leading thinkers and doers. Many of these talks are given at TED conferences, including the annual TED Conference and TEDGlobal. TED talks are shared freely online at TED.com and through the TED app, reaching millions of viewers worldwide.
+                TED began in 1984 as a conference where Technology, Entertainment and Design converged, but today it spans a multitude of worldwide communities and initiatives exploring everything from science and business to education, arts and global issues. In addition to the TED Talks curated from our annual conferences and published on TED.com, we produce original podcasts, short video series, animated educational lessons (TED-Ed) and TV programs that are translated into more than 100 languages and distributed via partnerships around the world. Each year, thousands of independently run TEDx events. Through the Audacious Project, TED has helped catalyze $6.6 billion in funding for projects that support bold solutions to the world's most urgent challenges — working to make the world more beautiful, sustainable and just. In 2020, TED launched Countdown, an initiative to accelerate solutions to the climate crisis and mobilize a movement for a net-zero future, and in 2023 TED launched TED Democracy to spark a new kind of conversation focused on realistic pathways towards a more vibrant and equitable future. View a full list of TED’s many programs and initiatives.
               </p>
             </div>
 
             <div>
               <h2 className="font-display font-semibold text-2xl mb-4">Follow TED</h2>
-              <div className="flex gap-4 items-center">
+              <div className="flex flex-wrap gap-4 items-center">
+                <a href="https://www.facebook.com/TED" target="_blank" rel="noopener noreferrer" className="card-border rounded-lg px-5 py-3 bg-card text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors text-sm font-medium inline-flex items-center gap-2">
+                  Facebook
+                </a>
                 <a href="https://www.instagram.com/ted/" target="_blank" rel="noopener noreferrer" className="card-border rounded-lg px-5 py-3 bg-card text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors text-sm font-medium inline-flex items-center gap-2">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                   Instagram
                 </a>
-                <a href="https://twitter.com/TEDTalks" target="_blank" rel="noopener noreferrer" className="card-border rounded-lg px-5 py-3 bg-card text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors text-sm font-medium inline-flex items-center gap-2">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-                  Twitter
+                <a href="https://www.linkedin.com/company/ted-conferences" target="_blank" rel="noopener noreferrer" className="card-border rounded-lg px-5 py-3 bg-card text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors text-sm font-medium inline-flex items-center gap-2">
+                  LinkedIn
                 </a>
-                <a href="https://www.youtube.com/ted" target="_blank" rel="noopener noreferrer" className="card-border rounded-lg px-5 py-3 bg-card text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors text-sm font-medium inline-flex items-center gap-2">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
-                  YouTube
+                <a href="https://www.tiktok.com/@tedtoks" target="_blank" rel="noopener noreferrer" className="card-border rounded-lg px-5 py-3 bg-card text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors text-sm font-medium inline-flex items-center gap-2">
+                  TikTok
+                </a>
+                <a href="https://twitter.com/TEDTalks" target="_blank" rel="noopener noreferrer" className="card-border rounded-lg px-5 py-3 bg-card text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors text-sm font-medium inline-flex items-center gap-2">
+                  X
                 </a>
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="text-center mt-16"
           >
-            <a
-              href="https://www.ted.com/tedx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-primary/30 text-primary px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-colors inline-block"
-            >
-              Learn more about TEDx
-            </a>
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 25 }} className="inline-block">
+              <a
+                href="https://www.ted.com/tedx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-primary/30 text-primary px-8 py-3 rounded-full font-semibold text-sm hover:bg-primary/10 hover:border-primary transition-colors block"
+              >
+                Learn more about TEDx
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>

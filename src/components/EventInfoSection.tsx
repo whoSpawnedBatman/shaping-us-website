@@ -43,7 +43,7 @@ const EventInfoSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 * (i + 1) }}
-              className="card-border rounded-xl p-8 bg-card text-center hover:border-primary/30 transition-colors duration-300"
+              className="card-border rounded-3xl p-8 bg-card text-center hover:border-primary/30 transition-colors duration-300"
             >
               <item.icon className="w-6 h-6 text-primary mx-auto mb-4" strokeWidth={1.5} />
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{item.label}</p>
@@ -94,7 +94,7 @@ const EventInfoSection = () => {
                     <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-card border-2 border-primary/40 group-hover:border-primary group-hover:bg-primary/20 transition-colors mt-1" />
                   </div>
 
-                  <div className="card-border rounded-xl p-5 bg-card flex-1 group-hover:border-primary/20 transition-colors duration-300">
+                  <div className="card-border rounded-3xl p-5 bg-card flex-1 group-hover:border-primary/20 transition-colors duration-300">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-1">
                       <span className="text-primary font-display font-semibold text-sm">{item.time}</span>
                       <h4 className="font-display font-semibold text-sm sm:text-base">{item.title}</h4>

@@ -1,13 +1,14 @@
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
+import { User } from "lucide-react";
 
 const teamMembers = [
-  { name: "Aditi Rao", role: "Organizer & Licensee", imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" },
-  { name: "Vikram Singh", role: "Co-Organizer", imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop" },
-  { name: "Sneha Kulkarni", role: "Speaker Curation Lead", imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" },
-  { name: "Arun Nair", role: "Creative Director", imageUrl: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=300&h=300&fit=crop" },
-  { name: "Kavya Menon", role: "Marketing Lead", imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop" },
-  { name: "Rahul Gupta", role: "Technical Director", imageUrl: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=300&h=300&fit=crop" },
+  { name: "Person 1", role: "Organizer & Licensee", imageUrl: "" },
+  { name: "Person 2", role: "Co-Organizer", imageUrl: "" },
+  { name: "Person 3", role: "Speaker Curation Lead", imageUrl: "" },
+  { name: "Person 4", role: "Creative Director", imageUrl: "" },
+  { name: "Person 5", role: "Marketing Lead", imageUrl: "" },
+  { name: "Batman", role: "Website Manager", imageUrl: "/batman.gif" },
 ];
 
 const Team = () => {
@@ -38,8 +39,12 @@ const Team = () => {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="text-center"
               >
-                <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 card-border">
-                  <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover" />
+                <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 card-border flex items-center justify-center bg-secondary">
+                  {member.imageUrl ? (
+                    <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <User className="w-12 h-12 text-muted-foreground" />
+                  )}
                 </div>
                 <h3 className="font-display font-semibold">{member.name}</h3>
                 <p className="text-primary text-sm mt-1">{member.role}</p>

@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
-const TARGET_DATE = new Date("2025-07-18T00:00:00").getTime();
+const TARGET_DATE = new Date("2026-07-18T00:00:00").getTime();
 
 const CountdownTimer = () => {
   const ref = useRef(null);
@@ -43,7 +43,7 @@ const CountdownTimer = () => {
           className="text-center mb-10"
         >
           <p className="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-body">Mark Your Calendar</p>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl">July 18, 2025</h2>
+          <h2 className="font-display font-bold text-3xl sm:text-4xl">July 18, 2026</h2>
         </motion.div>
 
         <div className="flex items-center justify-center gap-4 sm:gap-8">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
@@ -13,102 +13,129 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const [isHovered, setIsHovered] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 50);
+  });
 
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass" : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-1">
-          <span className="font-display font-bold text-xl tracking-tight">
-            TEDx<span className="text-primary">ICEAS</span>
-          </span>
-        </Link>
+    <nav className="fixed top-0 left-0 w-full z-50 pointer-events-none flex justify-between items-start py-6 px-6 sm:px-12">
+      {/* Logo on top left */}
+      <Link to="/" className="pointer-events-auto flex items-center">
+        <motion.img
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          src="/tedxiceas-logo.png"
+          alt="TEDxICEAS Logo"
+          className="h-10 sm:h-12 w-auto object-contain drop-shadow-2xl"
+        />
+      </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
-                location.pathname === item.path
-                  ? "text-primary"
-                  : "text-muted-foreground"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            to="/register"
-            className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-colors"
-          >
-            Register
-          </Link>
-        </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-foreground"
+      {/* Desktop Right Side Hover Pill */}
+      <div className="hidden md:flex flex-col items-end pointer-events-auto">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className={`flex items-center overflow-hidden rounded-full border transition-colors duration-500 ease-out ${scrolled || isHovered
+            ? "glass border-white/10 shadow-lg shadow-black/20 bg-background/50"
+            : "bg-transparent border-transparent"
+            }`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          layout
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          <div className="flex items-center h-[56px] px-5">
+            <AnimatePresence>
+              {isHovered && (
+                <motion.div
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: "auto", opacity: 1 }}
+                  exit={{ width: 0, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8 }}
+                  className="flex items-center gap-6 whitespace-nowrap overflow-hidden"
+                >
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${location.pathname === item.path
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                        }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  <Link
+                    to="/register"
+                    className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors"
+                  >
+                    Register
+                  </Link>
+                  {/* Divider */}
+                  <div className="w-px h-6 bg-white/20 mx-2" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <Menu className="w-6 h-6 text-foreground shrink-0 cursor-pointer" />
+          </div>
+        </motion.div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile toggle */}
+      <button
+        onClick={() => setMobileOpen(!mobileOpen)}
+        className="md:hidden text-foreground pointer-events-auto bg-black/50 p-3 rounded-full glass border border-white/10"
+      >
+        {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Mobile menu dropdown */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-border"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="absolute top-24 right-6 md:hidden glass border border-white/10 rounded-2xl p-4 w-56 pointer-events-auto flex flex-col gap-4 shadow-2xl"
           >
-            <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`text-sm font-medium transition-colors ${
-                    location.pathname === item.path
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+            {navItems.map((item) => (
               <Link
-                to="/register"
-                className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold text-center"
+                key={item.path}
+                to={item.path}
+                className={`text-sm font-medium transition-colors ${location.pathname === item.path
+                  ? "text-primary"
+                  : "text-muted-foreground"
+                  }`}
               >
-                Register
+                {item.label}
               </Link>
-            </div>
+            ))}
+            <div className="h-px bg-white/10 w-full" />
+            <Link
+              to="/register"
+              className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold text-center"
+            >
+              Register
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 

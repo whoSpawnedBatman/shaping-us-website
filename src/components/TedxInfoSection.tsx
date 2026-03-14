@@ -29,19 +29,22 @@ const TedxInfoSection = () => {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className="text-center mt-10"
         >
-          <a
-            href="https://www.ted.com/tedx"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-primary/30 text-primary px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-colors inline-block"
-          >
-            Learn more about TEDx
-          </a>
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 25 }} className="inline-block">
+            <a
+              href="https://www.ted.com/tedx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-primary/30 text-primary px-8 py-3 rounded-full font-semibold text-sm hover:bg-primary/10 hover:border-primary transition-colors block"
+            >
+              Learn more about TEDx
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

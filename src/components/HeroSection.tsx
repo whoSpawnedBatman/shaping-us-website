@@ -1,16 +1,28 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import FloatingShapes from "./FloatingShapes";
 
 const HeroSection = () => {
+  const { scrollY } = useScroll();
+  const yBg = useTransform(scrollY, [0, 1000], [0, 300]);
+  const yText = useTransform(scrollY, [0, 1000], [0, 100]);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <FloatingShapes />
-      
-      {/* Radial glow behind hero */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px]" />
+      <motion.div style={{ y: yBg, willChange: "transform" }} className="absolute inset-0 z-0">
+        <FloatingShapes />
+      </motion.div>
 
-      <div className="container mx-auto px-6 relative z-10 text-center">
+      {/* Pulsing radial glow behind hero - Restored */}
+      <motion.div style={{ y: yBg }} className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[600px] md:w-[800px] h-[600px] md:h-[800px] rounded-full bg-primary/10 blur-[100px] md:blur-[140px]"
+        />
+      </motion.div>
+
+      <motion.div className="container mx-auto px-6 relative z-10 text-center" style={{ y: yText, willChange: "transform" }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -21,55 +33,54 @@ const HeroSection = () => {
           </p>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-          className="font-display font-bold text-5xl sm:text-7xl lg:text-8xl xl:text-9xl tracking-tight leading-[0.9]"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="flex justify-center"
         >
-          TEDx<span className="text-primary">ICEAS</span>
-        </motion.h1>
+          <img
+            src="/tedxiceas-logo.png"
+            alt="TEDxICEAS"
+            className="h-24 sm:h-32 lg:h-40 xl:h-48 w-auto object-contain drop-shadow-2xl"
+          />
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="font-display text-xl sm:text-2xl lg:text-3xl text-muted-foreground mt-6 font-light"
         >
           What Shapes Us
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-muted-foreground"
-        >
-          <span>📍 Bengaluru, India</span>
-          <span className="hidden sm:block">·</span>
-          <span>📅 July 18, 2025</span>
-        </motion.div>
+
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.65, ease: "easeOut" }}
+          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Link
-            to="/register"
-            className="bg-primary text-primary-foreground px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/20"
-          >
-            Register Now
-          </Link>
-          <Link
-            to="/speakers"
-            className="border border-border text-foreground px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-secondary transition-colors"
-          >
-            View Speakers
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 25 }}>
+            <Link
+              to="/register"
+              className="bg-primary text-primary-foreground px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-primary/90 transition-shadow hover:shadow-[0_0_20px_rgba(235,0,40,0.3)] inline-block"
+            >
+              Register Now
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 25 }}>
+            <Link
+              to="/speakers"
+              className="border border-border text-foreground px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-secondary/50 transition-colors inline-block"
+            >
+              View Speakers
+            </Link>
+          </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
